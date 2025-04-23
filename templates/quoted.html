@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock price
+{% endblock %}
+
+{% block main %}
+    {% for key, value in stock.items() %}
+    <div class="mb-3">
+        {{ key }} :
+        {% if key == "price" %}
+            {{ value | usd }}
+        {% else %}
+            {{ value }}
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

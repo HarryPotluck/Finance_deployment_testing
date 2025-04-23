@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main page
+{% endblock %}
+
+{% block main %}
+    <h1>Username: {{username}}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{stock.symbol}}</td>
+                <td>{{stock.shares}}</td>
+                <td>{{stock.current_price | usd}}</td>
+                <td>{{(stock.shares * stock.current_price) | usd}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h4>Balance: {{balance | usd}} </h4>
+    <h4>Unrealized: {{unrealized | usd}}</h4>
+    <h3>Total: {{(balance + unrealized) | usd}}</h3>
+{% endblock %}
